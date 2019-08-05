@@ -1,0 +1,16 @@
+- name: a-cool-job
+  plan:
+  - get: cool-project
+    trigger: true
+  - task: a-cool-task
+    file: cool-project/ci/tasks/a-cool-task.yml
+    params:
+      A_VERY_COOL_ENV:                    {{value_for_a_very_cool_env}}
+ 
+resouces:
+- name: cool-project
+  type: git
+  source:
+    uri: git@fake-github:DellEMC/cool-project.git
+    branch: master
+    private_key: {{cool_project_github_private_key}}
